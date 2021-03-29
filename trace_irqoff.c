@@ -646,21 +646,21 @@ static void trace_irqoff_cancel_timers(void)
 	}
 }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 4, 0)
-#include <linux/string.h>
+//#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 4, 0)
+//#include <linux/string.h>
 
-static int kstrtobool_from_user(const char __user *s, size_t count, bool *res)
-{
-	/* Longest string needed to differentiate, newline, terminator */
-	char buf[4];
-
-	count = min(count, sizeof(buf) - 1);
-	if (copy_from_user(buf, s, count))
-		return -EFAULT;
-	buf[count] = '\0';
-	return strtobool(buf, res);
-}
-#endif
+//static int kstrtobool_from_user(const char __user *s, size_t count, bool *res)
+//{
+//	/* Longest string needed to differentiate, newline, terminator */
+//	char buf[4];
+//
+//	count = min(count, sizeof(buf) - 1);
+//	if (copy_from_user(buf, s, count))
+//		return -EFAULT;
+//	buf[count] = '\0';
+//	return strtobool(buf, res);
+//}
+//#endif
 
 static ssize_t enable_write(struct file *file, const char __user *buf,
 			    size_t count, loff_t *ppos)
